@@ -7,7 +7,7 @@
 
 > **Give your AI live trend data across Google, YouTube, TikTok, Reddit, Amazon,
 > Wikipedia, News, Web Traffic, App Downloads, Steam, npm, and more.**
-> One MCP connection. No API keys. No scraping. Works with any MCP-compatible AI.
+> One MCP connection. Free API key. No scraping. Works with any MCP-compatible AI.
 
 **[trendsmcp.ai](https://trendsmcp.ai)** &nbsp;|&nbsp;
 [Data Sources](https://trendsmcp.ai/data-sources) &nbsp;|&nbsp;
@@ -24,23 +24,32 @@
 | Managing TikTok, Reddit, YouTube APIs separately is painful | One MCP endpoint, all platforms, consistent schema |
 | pytrends scrapes Google and breaks constantly | Managed pipeline with retries, no scraping |
 | Trend data comes back as charts you have to read manually | Structured JSON your AI reasons over directly |
-| Expensive enterprise tools just for trend signals | MCP subscription, no dashboard, no per-seat pricing |
+| Managing separate API keys for TikTok, Reddit, YouTube | One Trends MCP key covers all 12+ sources |
+| Expensive enterprise tools just for trend signals | Free tier available, no dashboard, no per-seat pricing |
 
 ---
 
 ## Quick install
 
+### 1. Get a free API key
+
+Go to **[trendsmcp.ai](https://trendsmcp.ai)**, enter your email, and get your free key instantly.
+100 requests/day, no credit card required.
+
+### 2. Add to your AI client
+
 [**+ Add to Cursor (one click)**](cursor://anysphere.cursor-deeplink/mcp/install?name=trends-mcp&config=eyJ1cmwiOiJodHRwczovL2FwaS50cmVuZHNtY3AuYWkvdjEvbWNwIiwidHJhbnNwb3J0IjoiaHR0cCJ9)
 
-Or paste the config manually:
+Or paste the config manually (replace `YOUR_API_KEY` with the key from your email):
 
 **Cursor / Windsurf / Cline** &nbsp; (`~/.cursor/mcp.json` or equivalent)
 ```json
 {
   "mcpServers": {
     "trends-mcp": {
-      "url": "https://api.trendsmcp.ai/v1/mcp",
-      "transport": "http"
+      "url": "https://api.trendsmcp.ai/mcp",
+      "transport": "http",
+      "headers": { "Authorization": "Bearer YOUR_API_KEY" }
     }
   }
 }
@@ -52,7 +61,8 @@ Or paste the config manually:
   "servers": {
     "trends-mcp": {
       "type": "http",
-      "url": "https://api.trendsmcp.ai/v1/mcp"
+      "url": "https://api.trendsmcp.ai/mcp",
+      "headers": { "Authorization": "Bearer YOUR_API_KEY" }
     }
   }
 }
@@ -63,8 +73,9 @@ Or paste the config manually:
 {
   "mcpServers": {
     "trends-mcp": {
-      "url": "https://api.trendsmcp.ai/v1/mcp",
-      "transport": "http"
+      "url": "https://api.trendsmcp.ai/mcp",
+      "transport": "http",
+      "headers": { "Authorization": "Bearer YOUR_API_KEY" }
     }
   }
 }
@@ -72,7 +83,7 @@ Or paste the config manually:
 
 **Claude.ai** (browser) &nbsp; Settings → Connectors → Add custom connector:
 ```
-https://api.trendsmcp.ai/v1/mcp
+https://api.trendsmcp.ai/mcp
 ```
 
 ---
